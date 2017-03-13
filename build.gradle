@@ -9,14 +9,13 @@ buildscript {
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 	}
+
 }
 
 apply plugin: 'java'
-//apply plugin: 'jetty'
 apply plugin: 'idea'
-//apply plugin: 'war'
+apply plugin: 'war'
 apply plugin: 'org.springframework.boot'
-
 jar {
 	baseName = 'photo'
 	version = '0.0.1-SNAPSHOT'
@@ -29,10 +28,6 @@ repositories {
 	mavenCentral()
 }
 
-//webAppDirName='webapp'
-//war{
-//	from 'static'
-//}
 
 
 dependencies {
@@ -49,10 +44,7 @@ dependencies {
 //	compile('com.rabbitmq:amqp-client:3.5.1')
 //	compile('org.springframework.amqp:spring-rabbit:1.4.5.RELEASE')
 	compile('org.springframework.boot:spring-boot-starter-amqp:1.4.1.RELEASE')
-//	providedCompile('javax.servlet:javax.servlet-api:3.1.0')
-//	providedCompile('taglibs:standard:1.1.2')
-//	runtime('javax.servlet:jstl:1.1.2')
-//	runtime ("org.apache.tomcat.embed:tomcat-embed-jasper")
+	runtime ("org.apache.tomcat.embed:tomcat-embed-jasper")
 }
 
 
@@ -62,7 +54,3 @@ springBoot{
 }
 
 
-//jettyRun{
-//	httpPort=8081
-//	contextPath='/'
-//}

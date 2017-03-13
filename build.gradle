@@ -1,0 +1,68 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.1.RELEASE'
+	}
+	repositories {
+		mavenLocal()
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+//apply plugin: 'jetty'
+apply plugin: 'idea'
+//apply plugin: 'war'
+apply plugin: 'org.springframework.boot'
+
+jar {
+	baseName = 'photo'
+	version = '0.0.1-SNAPSHOT'
+}
+
+sourceCompatibility = 1.7
+
+repositories {
+	mavenLocal()
+	mavenCentral()
+}
+
+//webAppDirName='webapp'
+//war{
+//	from 'static'
+//}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-data-redis')
+	compile('org.mybatis.spring.boot:mybatis-spring-boot-starter:1.2.0')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	runtime('mysql:mysql-connector-java')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+	compile('org.projectlombok:lombok:1.16.6')
+	compile('org.springframework.boot:spring-boot-starter-data-jpa:1.4.1.RELEASE')
+	compile('org.mybatis.spring.boot:mybatis-spring-boot-starter:1.1.1')
+
+	/*rabbitmq*/
+//	compile('com.rabbitmq:amqp-client:3.5.1')
+//	compile('org.springframework.amqp:spring-rabbit:1.4.5.RELEASE')
+	compile('org.springframework.boot:spring-boot-starter-amqp:1.4.1.RELEASE')
+//	providedCompile('javax.servlet:javax.servlet-api:3.1.0')
+//	providedCompile('taglibs:standard:1.1.2')
+//	runtime('javax.servlet:jstl:1.1.2')
+//	runtime ("org.apache.tomcat.embed:tomcat-embed-jasper")
+}
+
+
+
+springBoot{
+	mainClass = "com.wenyu.SpbootApplication"
+}
+
+
+//jettyRun{
+//	httpPort=8081
+//	contextPath='/'
+//}

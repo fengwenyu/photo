@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace必须指向Dao接口 -->
+<mapper namespace="com.wenyu.dto.PhoteMapper">
+    <resultMap id="ListPhoto" type="com.wenyu.domain.Photo" >
+        <result column="id" property="id" />
+        <result column="desc" property="desc" />
+        <result column="url" property="url" />
+        <result column="location" property="location" />
+        <result column="date" property="date" />
+    </resultMap>
+    <select id="getListByPage" resultMap="ListPhoto">
+      select * from photo where status='1' order by date Desc limit #{start},#{end};
+    </select>
+
+    <insert id="addPhoto">
+        INSERT INTO photo (`desc`,`url`,`location`,`date`) VALUES (#{photo.desc},#{photo.url},#{photo.location},now());
+    </insert>
+
+    <update id="delPhoto">
+        UPDATE photo SET status='0' WHERE id=${id}
+    </update>
+    <update id="revertPhoto">
+        UPDATE photo SET status='1' WHERE id=${id}
+    </update>
+</mapper>

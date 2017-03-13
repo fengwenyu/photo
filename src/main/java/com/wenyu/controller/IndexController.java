@@ -3,6 +3,8 @@ package com.wenyu.controller;
 import com.wenyu.domain.Photo;
 import com.wenyu.service.PhotoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,14 +15,14 @@ import java.util.List;
 /**
  * Created by 文宇 on 2017/3/13.
  */
-@RestController
+@Controller
 @RequestMapping("/index")
 public class IndexController {
 
     @Autowired
     PhotoService photoService;
     @RequestMapping("/list")
-    public  List<Photo> findBypage(String pageIndex,@RequestParam(defaultValue = "10") String pageSize){
+    public String findBypage(String pageIndex, @RequestParam(defaultValue = "10") String pageSize, Model model){
         int index = 0;
         int size = 0;
         try {
@@ -31,7 +33,8 @@ public class IndexController {
             return null;
         }
         List<Photo> listByPage = photoService.getListByPage(index, size);
-        return listByPage;
+        model.addAttribute("photos",listByPage);
+        return "list";
     }
 
     @RequestMapping("/upload")

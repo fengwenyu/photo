@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <div class="photo-list">
+        <div class="photo-item" th:each="photo:${photos}">
+            <img src="list.html" th:src="${photo.url}"/>
+            <em th:text="${photo.desc}">desc</em>
+            <i th:text="${photo.location}">location</i>
+            <em th:text="${#dates.format(photo.date,'yyyy-MM-dd HH:mm:ss')}">time</em>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="" th:src="@{/js/photo/jquery.min.js}"></script>
+    <script src="" th:src="@{/js/common/jquery.form.js}"></script>
+    <script>
+        $(function(){
+            $('#submitFile').click(function () {
+                $("#uploadForm").ajaxSubmit({
+                    success: function (data) {
+                        if(data.code=="0"){
+                            alert("上传成功！");
+                        }else{
+                            alert(data.msg);
+                        }
+                    },
+                    error: function (error) { alert("数据错误,请重试!"); },
+//                    url: "/index/uploadFile",
+//                    type: "post",
+                    dataType: "json"
+                });
+            })
+        })
+    </script>
+</head>
+<body>
+    <form id="uploadForm" action="/index/uploadFile" method="post" enctype="multipart/form-data">
+        <p>描述: <input type="text" name="desc" placeholder="给照片填写一些描述吧"/></p>
+        <p>位置: <input type="text" name="location" placeholder="照片位置 如 北京-朝阳"/></p>
+        <p>图片: <input type="file" name="file"/></p>
+        <input type="button" id="submitFile" value="上传"/>
+    </form>
+</body>
+</html>

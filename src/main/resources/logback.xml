@@ -7,9 +7,9 @@
 </appender>
 
 <appender name="rollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
-    <file>log/spboot.log</file>
+    <file>/data/log/spboot.log</file>
     <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-        <fileNamePattern>log/spboot.%d{yyyyMMdd}.log</fileNamePattern>
+        <fileNamePattern>/data/log/spboot.%d{yyyyMMdd}.log</fileNamePattern>
     </rollingPolicy>
     <encoder>
         <pattern>[%-5level] %d [%thread] %logger{36} - %msg%n</pattern>

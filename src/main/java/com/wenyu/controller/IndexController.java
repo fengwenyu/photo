@@ -21,6 +21,13 @@ public class IndexController {
 
     @Autowired
     PhotoService photoService;
+
+    @RequestMapping("")
+    public String index(){
+        return "photo/photo";
+    }
+
+
     @RequestMapping("/list")
     public String findBypage(String pageIndex, @RequestParam(defaultValue = "10") String pageSize, Model model){
         int index = 0;
@@ -36,6 +43,23 @@ public class IndexController {
         model.addAttribute("photos",listByPage);
         return "list";
     }
+
+    @RequestMapping("/list1")
+    public String findBypage1(String pageIndex, @RequestParam(defaultValue = "20") String pageSize, Model model){
+        int index = 0;
+        int size = 0;
+        try {
+            index = Integer.parseInt(pageIndex);
+            size = Integer.parseInt(pageSize);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            return null;
+        }
+        List<Photo> listByPage = photoService.getListByPage(index, size);
+        model.addAttribute("photos",listByPage);
+        return "home/photo";
+    }
+
 
     @RequestMapping("/upload")
     public String uploadPhoto(Photo photo){

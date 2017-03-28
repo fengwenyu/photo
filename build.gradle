@@ -46,6 +46,7 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-amqp:1.4.1.RELEASE')
 	//runtime ("org.apache.tomcat.embed:tomcat-embed-jasper")
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+	compile('net.coobird:thumbnailator:0.4.8')
 }
 
 
